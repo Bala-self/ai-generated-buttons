@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    background:
+      radial-gradient(1200px 600px at 10% -10%, rgba(99,102,241,0.18), transparent 60%),
+      radial-gradient(1000px 500px at 110% 10%, rgba(236,72,153,0.15), transparent 60%),
+      #020617;
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/5 backdrop-blur border border-white/10 rounded-2xl;
+  }
+  .chip {
+    @apply px-3 py-1.5 text-xs font-semibold rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition;
+  }
+  .chip-active {
+    @apply bg-gradient-to-r from-indigo-500 to-fuchsia-500 border-transparent text-white;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-5 py-2.5 rounded-xl font-semibold
+           bg-gradient-to-r from-indigo-500 via-fuchsia-500 to-pink-500
+           hover:from-indigo-400 hover:via-fuchsia-400 hover:to-pink-400
+           transition shadow-lg shadow-fuchsia-900/30;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center px-4 py-2 rounded-xl font-semibold
+           bg-white/5 border border-white/10 hover:bg-white/10 transition;
+  }
+  .input {
+    @apply w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10
+           focus:border-fuchsia-400 focus:ring-2 focus:ring-fuchsia-400/30 outline-none transition;
+  }
+}
+
+/* Flip card */
+.flip-scene { perspective: 1200px; }
+.flip-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.7s cubic-bezier(.4,.2,.2,1);
+  transform-style: preserve-3d;
+}
+.flip-card.flipped { transform: rotateY(180deg); }
+.flip-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+.flip-back { transform: rotateY(180deg); }
+
+/* Preview iframe-ish container: ensure scoped buttons center nicely */
+.preview-stage {
+  display: grid;
+  place-items: center;
+  min-height: 140px;
+  padding: 1.5rem;
+}
